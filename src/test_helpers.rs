@@ -619,7 +619,7 @@ where
 ///     Ok(data)
 /// );
 /// ```
-pub fn test_vec_decoding_roundtrip<T>(
+/*pub fn test_vec_decoding_roundtrip<T>(
     test_vec: impl AsRef<[u8]>,
 ) -> Result<T, DataEncodingTestFailure<T>>
 where
@@ -640,7 +640,7 @@ where
         );
     }
     Ok(decoded_object)
-}
+}*/
 
 /// Test helper performing double encode-decode roundtrip for an object
 /// and a matching binary encoding test vector. Object type must be
