@@ -662,7 +662,6 @@ where
 ///
 /// # Example
 ///
-/// ```
 /// # #[macro_use] extern crate strict_encoding;
 /// # use strict_encoding::test_helpers::test_encoding_roundtrip;
 ///
@@ -671,7 +670,6 @@ where
 ///
 /// let data = Data(vec![0x01, 0x02]);
 /// test_encoding_roundtrip(&data, &[0x02, 0x00, 0x01, 0x02]).unwrap();
-/// ```
 /*pub fn test_encoding_roundtrip<T>(
     object: &T,
     test_vec: impl AsRef<[u8]>,
