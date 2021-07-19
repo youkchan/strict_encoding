@@ -1,7 +1,5 @@
-// LNP/BP client-side-validation foundation libraries implementing LNPBP
-// specifications & standards (LNPBP-4, 7, 8, 9, 42, 81)
-//
-// Written in 2019-2021 by
+// LNP/BP Core Library implementing LNPBP specifications & standards
+// Written in 2020 by
 //     Dr. Maxim Orlovsky <orlovsky@pandoracore.com>
 //
 // To the extent possible under law, the author(s) have dedicated all
@@ -9,8 +7,9 @@
 // the public domain worldwide. This software is distributed without
 // any warranty.
 //
-// You should have received a copy of the Apache 2.0 License along with this
-// software. If not, see <https://opensource.org/licenses/Apache-2.0>.
+// You should have received a copy of the MIT License
+// along with this software.
+// If not, see <https://opensource.org/licenses/MIT>.
 
 use proc_macro2::{Span, TokenStream as TokenStream2};
 use quote::{ToTokens, TokenStreamExt};
@@ -188,7 +187,7 @@ fn decode_fields_impl<'a>(
             .ident
             .as_ref()
             .map(Ident::to_token_stream)
-            .unwrap_or_else(|| Index::from(index).to_token_stream());
+            .unwrap_or(Index::from(index).to_token_stream());
 
         if encoding.skip {
             stream.append_all(quote_spanned! { field.span() =>

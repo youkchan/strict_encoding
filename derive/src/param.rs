@@ -1,7 +1,5 @@
-// LNP/BP client-side-validation foundation libraries implementing LNPBP
-// specifications & standards (LNPBP-4, 7, 8, 9, 42, 81)
-//
-// Written in 2019-2021 by
+// LNP/BP Core Library implementing LNPBP specifications & standards
+// Written in 2020 by
 //     Dr. Maxim Orlovsky <orlovsky@pandoracore.com>
 //
 // To the extent possible under law, the author(s) have dedicated all
@@ -9,8 +7,9 @@
 // the public domain worldwide. This software is distributed without
 // any warranty.
 //
-// You should have received a copy of the Apache 2.0 License along with this
-// software. If not, see <https://opensource.org/licenses/Apache-2.0>.
+// You should have received a copy of the MIT License
+// along with this software.
+// If not, see <https://opensource.org/licenses/MIT>.
 
 use proc_macro2::Span;
 use std::convert::TryInto;
@@ -80,10 +79,10 @@ impl EncodingDerive {
             .expect(
                 "amplify_syn is broken: attribute `repr` required to be Ident",
             )
-            .unwrap_or_else(|| ident!(u8));
+            .unwrap_or(ident!(u8));
 
         match repr.to_string().as_str() {
-            "u8" | "u16" | "u32" | "u64" => {}
+            "u8" | "u16" | "u32" | "u64" | "i8" | "i16" | "i32" | "i64" => {}
             _ => {
                 return Err(Error::new(
                     Span::call_site(),
@@ -96,7 +95,7 @@ impl EncodingDerive {
             .args
             .get("crate")
             .cloned()
-            .unwrap_or_else(|| ArgValue::from(ident!(strict_encoding)))
+            .unwrap_or(ArgValue::from(ident!(strict_encoding)))
             .try_into()
             .expect("amplify_syn is broken: requirements for crate arg are not satisfied");
 
@@ -113,8 +112,8 @@ impl EncodingDerive {
             use_crate,
             skip,
             by_order,
-            value,
             repr,
+            value,
         })
     }
 }
